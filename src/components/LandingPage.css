@@ -4,7 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    background-image: url('./images/backimg1.jpg'); /* Add your background image URL here */
+    background-image: url('./images/backimg1.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -15,10 +15,11 @@ p {
 }
 
 .p-6 {
+    margin-top: 19px;
     display: inline-block;
     font-family: 'Roboto', sans-serif;
     color: #333;
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 1rem;
     text-align: center;
     width: 40%;
@@ -58,12 +59,15 @@ p {
 
 .p-5 {
     text-align: center;
+    padding: 1rem;
 }
 
 .display-4 {
     font-size: 2.5rem;
     animation: fadeIn 2s ease-in-out;
     color: #007bff;
+    margin-top:25px ;
+    margin-bottom: 25px;
 }
 .footer {
     text-align: center;
@@ -91,8 +95,8 @@ p {
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
-    padding: 0.5rem 1rem; /* Adjust padding to make the button smaller */
-    font-size: 0.875rem; /* Adjust font size to make the button smaller */
+    padding: 0.5rem 1rem; 
+    font-size: 0.875rem; 
 }
 
 .btn-primary:hover {
@@ -103,11 +107,12 @@ p {
 .btn-danger {
     background-color: #dc3545;
     border-color: #dc3545;
-    padding: 0.5rem 1rem; /* Adjust padding to make the button smaller */
-    font-size: 0.875rem; /* Adjust font size to make the button smaller */
+    padding: 0.5rem 1rem; 
+    font-size: 0.875rem; 
 }
 
 .btn-danger:hover {
     background-color: #c82333;
     border-color: #bd2130;
 }
+

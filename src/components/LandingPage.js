@@ -21,9 +21,6 @@ const LandingPage = () => {
                     <Link to="/login" className="btn btn-danger btn-lg me-4">Login</Link>
                 </div>
             </div>
-            <footer className="footer">
-                <p>&copy; 2024 AKG CollabTool. All rights reserved.</p>
-            </footer>
         </div>
     );
 };
