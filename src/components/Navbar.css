@@ -32,8 +32,14 @@
     gap: 1rem;
 }
 
+.me-auto{
+    padding-top: 4px;
+    padding-bottom: 12px;
+}
 .nav-item {
     position: relative;
+    border: solid 2px black;
+    border-radius: 5px;
 }
 
 .nav-link {
@@ -44,8 +50,11 @@
 }
 
 .nav-link:hover {
-    color: #e0e0e0;
-    transform: scale(1.1);
+    color: black;
+    transform: scale(1.05);
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    
 }
 
 .nav-link::after {
