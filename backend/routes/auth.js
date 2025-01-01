@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {
@@ -25,14 +25,14 @@ router.post('/register', async (req, res) => {
     });
 
     // Respond with the token
-    res.status(201).json({ username: user.username,token:token });
+    res.status(201).json({ username: user.username, token: token });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    next(error); // Pass the error to the error handling middleware
   }
 });
 
 // POST: Sign In
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid password' });
+      return res.status(400).json({ message: 'Invalid password' });
     }
 
     //json web token
@@ -51,10 +51,11 @@ router.post('/login', async (req, res) => {
     });
 
     //
-    res.status(201).json({ username: user.name,token:token });
-    console.log(user.name)
+    res.status(201).json({ username: user.name, token: token });
+    console.log(user.name);
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    next(error); // Pass the error to the error handling middleware
   }
 });
+
 module.exports = router;
