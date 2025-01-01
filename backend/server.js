@@ -10,6 +10,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const documentRoutes = require('./routes/documents');
 const commentRoutes = require('./routes/comments'); 
+const Comment = require('./models/Comment'); // Import Comment model
 
 dotenv.config();
 connectDB();
@@ -36,6 +37,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/comments', commentRoutes); 
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'An unexpected error occurred. Please try again later.' });
+});
+
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
@@ -58,8 +65,13 @@ io.on('connection', (socket) => {
         socket.to(documentId).emit('documentUpdate', content);
     });
 
-    socket.on('comment', (documentId, comment) => {
-        io.to(documentId).emit('comment', comment);
+    socket.on('comment', async (documentId, comment) => {
+        try {
+            const newComment = await Comment.create(comment);
+            io.to(documentId).emit('comment', newComment);
+        } catch (error) {
+            socket.emit('error', 'Failed to add comment');
+        }
     });
 });
 
