@@ -5,21 +5,39 @@ import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 import DocumentEditor from './components/DocumentEditor';
+import DocumentForm from './components/DocumentForm';
+import './App.css';
+import { LayoutProvider, useLayout } from './contexts/LayoutContext';
 
-const App = () => {
+const AppContent = () => {
+    const { showFooter } = useLayout();
+    
     return (
-        <Router>
-            <div>
-                <Navbar />
+        <div className="app-container">
+            <Navbar />
+            <main className="main-content">
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/documents/new" element={<DocumentForm />} />
                     <Route path="/documents/:id" element={<DocumentEditor />} />
                 </Routes>
-                <Footer />
-            </div>
+            </main>
+            {showFooter && <Footer />}
+        </div>
+    );
+};
+
+const App = () => {
+    return (
+        <Router>
+            <LayoutProvider>
+                <AppContent />
+            </LayoutProvider>
         </Router>
     );
 };
