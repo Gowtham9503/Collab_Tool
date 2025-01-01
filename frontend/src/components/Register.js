@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
@@ -6,30 +8,29 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setError(''); 
-       /* try {
-          const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
-          localStorage.setItem('token', data.token);
-            navigate('/'); 
-        catch (error) {
+        setError(''); // Clear any previous errors
+        try {
+            const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+            localStorage.setItem('token', data.token);
+            navigate('/login'); // Redirect to login if registration is successful
+        } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
-                setError(error.response.data.message); 
-            } 
-            else {
-            setError('An unexpected error occurred. Please try again later.');
-           }
+                setError(error.response.data.message); // Set error message if registration fails
+            } else {
+                setError('An unexpected error occurred. Please try again later.');
+            }
         }
-    }*/
-};
+    };
 
     return (
-        <div className="container">
+        <div className="register-container">
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
-                <div className="mb-3">
+                <div className="form-group">
                     <label htmlFor="name" className="form-label">Username</label>
                     <input
                         type="text"
@@ -40,7 +41,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <div className="mb-3">
+                <div className="form-group">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input
                         type="email"
@@ -51,7 +52,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <div className="mb-3">
+                <div className="form-group">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input
                         type="password"
@@ -62,10 +63,10 @@ const Register = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button type="submit" className="register-button">Register</button>
             </form>
-            {error && <p className="text-danger mt-3">{error}</p>} {/* Display error message */}
-            <p>Already have an account? <a href="/login">Login</a></p>
+            {error && <p className="error-message">{error}</p>} {/* Display error message */}
+            <p>Already have an account? <a href="/login" className="login-link">Login</a></p>
         </div>
     );
 };

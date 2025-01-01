@@ -6,22 +6,27 @@ body {
     color: #333;
 }
 
-.container {
+.register-container {
     max-width: 500px;
     margin: 50px auto;
-    margin-top: 100px;
     padding: 2rem;
+    padding-right: 3.5rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     animation: slideIn 1.5s ease-in-out;
+    
 }
 
 h2 {
     text-align: center;
     color: #28a745; /* Different color for the heading */
     margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
 }
 
 .form-label {
@@ -40,34 +45,35 @@ h2 {
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
 
-.btn {
-    width: 100%;
+.register-button {
+    margin-top: 9px;
+    width: 105%;
     padding: 0.75rem;
     font-size: 1rem;
+    background-color: #28a745; /* Different button color */
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.btn-primary {
-    background-color: #28a745; /* Different button color */
-    border-color: #28a745;
-}
-
-.btn-primary:hover {
+.register-button:hover {
     background-color: #218838;
-    border-color: #1e7e34;
     transform: scale(1.05);
 }
 
-.text-danger {
+.error-message {
     color: #dc3545;
+    margin-top: 1rem;
 }
 
-a {
+.login-link {
     color: #28a745; /* Different link color */
     text-decoration: none;
 }
 
-a:hover {
+.login-link:hover {
     text-decoration: underline;
 }
 
@@ -75,6 +81,7 @@ a:hover {
     from { transform: translateX(-100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+
 .footer {
     text-align: center;
     padding: 1rem;

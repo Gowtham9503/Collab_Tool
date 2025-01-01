@@ -1,0 +1,22 @@
+.version-history {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.version-list {
+    margin-top: 1rem;
+}
+
+.version-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.version-item:last-child {
+    border-bottom: none;
+}

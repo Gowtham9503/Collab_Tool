@@ -8,17 +8,25 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s ease-in-out;
+    height: 80px; /* Adjusted height */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .navbar-brand {
     color: #fff;
     font-size: 1.5rem;
     text-decoration: none;
+    cursor: pointer;
     transition: color 0.3s ease-in-out;
 }
 
@@ -26,40 +34,42 @@
     color: #e0e0e0;
 }
 
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
 .navbar-nav {
     list-style: none;
     display: flex;
     gap: 1rem;
+    align-items: center; /* Ensure items are aligned in the center */
 }
 
-.me-auto{
-    padding-top: 4px;
-    padding-bottom: 12px;
-}
 .nav-item {
     position: relative;
-    border: solid 2px black;
-    border-radius: 5px;
 }
 
+/* Regular nav links (Dashboard, Login, Register) */
 .nav-link {
     color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border-radius: 4px;
+    background-color: #0056b3;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
 }
 
 .nav-link:hover {
-    color: black;
     transform: scale(1.05);
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    
+    background-color: #004494;
 }
 
 .nav-link::after {
     content: '';
-    display: block;
+    display: inline-block;
     width: 0;
     height: 2px;
     background: #e0e0e0;
@@ -87,6 +97,7 @@
     padding: 0.5rem 1rem;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
+    border-radius: 4px; /* Ensure border-radius remains consistent */
 }
 
 .dropdown-item:hover {
@@ -108,12 +119,16 @@
         display: none;
     }
 
-    .navbar-nav.active {
+    .navbar-nav.show {
         display: flex;
     }
 
     .nav-link {
         padding: 1rem;
+    }
+
+    .navbar-toggler {
+        display: flex;
     }
 }
 
@@ -131,8 +146,34 @@
     transition: all 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
+.navbar-toggler {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-toggler-icon {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Logout button specific styles */
+.logout-button {
+    background: #dc3545;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+    transform: scale(1.05);
+    background-color: #c82333;
 }
