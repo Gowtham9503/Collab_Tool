@@ -26,7 +26,9 @@ const io = new Server(server, {
 
 // Configure CORS for HTTP requests
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://your-frontend-url.vercel.app']
+        : ['http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
