@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/documents';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 const user = JSON.parse(localStorage.getItem('user'));
 const token = user ? user.token : null;
 
 export const getDocuments = async () => {
     try {
-        const { data } = await axios.get(API_URL, {
+        const { data } = await axios.get(`${API_URL}/documents`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -19,7 +19,7 @@ export const getDocuments = async () => {
 
 export const getDocumentById = async (id) => {
     try {
-        const { data } = await axios.get(`${API_URL}/${id}`, {
+        const { data } = await axios.get(`${API_URL}/documents/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -32,7 +32,7 @@ export const getDocumentById = async (id) => {
 
 export const updateDocument = async (id, documentData) => {
     try {
-        const { data } = await axios.put(`${API_URL}/${id}`, documentData, {
+        const { data } = await axios.put(`${API_URL}/documents/${id}`, documentData, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -45,7 +45,7 @@ export const updateDocument = async (id, documentData) => {
 
 export const deleteDocument = async (id) => {
     try {
-        const { data } = await axios.delete(`${API_URL}/${id}`, {
+        const { data } = await axios.delete(`${API_URL}/documents/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
