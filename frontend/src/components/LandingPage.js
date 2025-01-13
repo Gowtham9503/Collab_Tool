@@ -2,6 +2,7 @@ import './LandingPage.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { getDocuments, deleteDocument } from '../services/documentService'; // Import the deleteDocument function
 
 const socket = io('http://localhost:5000');
 
@@ -27,6 +28,27 @@ const LandingPage = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const fetchDocuments = async () => {
+            try {
+                const docs = await getDocuments();
+                setDocuments(docs);
+            } catch (error) {
+                console.error('Failed to fetch documents:', error);
+            }
+        };
+        fetchDocuments();
+    }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await deleteDocument(id);
+            setDocuments((prevDocuments) => prevDocuments.filter((doc) => doc._id !== id));
+        } catch (error) {
+            console.error('Failed to delete document:', error);
+        }
+    };
+
     return (
         <div className="landing-page-container">
             <div className="landing-page-content">
@@ -43,6 +65,15 @@ const LandingPage = () => {
                 <div className="landing-page-buttons">
                     <Link to="/register" className="landing-page-button primary">Register</Link>
                     <Link to="/login" className="landing-page-button danger">Login</Link>
+                </div>
+                <div className="document-list">
+                    {documents.map((doc) => (
+                        <div key={doc._id} className="document-card">
+                            <h5>{doc.title}</h5>
+                            <p>{doc.content}</p>
+                            <button onClick={() => handleDelete(doc._id)} className="delete-button">Delete</button>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

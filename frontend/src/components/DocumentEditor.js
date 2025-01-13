@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 import './DocumentEditor.css';
@@ -11,6 +11,7 @@ const socket = io('http://localhost:5000');
 
 const DocumentEditor = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const { setShowFooter } = useLayout();
     const [document, setDocument] = useState(null);
     const [content, setContent] = useState('');
@@ -88,6 +89,21 @@ const DocumentEditor = () => {
         }
     };
 
+    const handleDelete = async () => {
+        try {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = user ? user.token : null;
+            await axios.delete(`http://localhost:5000/api/documents/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            navigate('/dashboard');
+        } catch (error) {
+            setError('Failed to delete document');
+        }
+    };
+
     return (
         <div className="document-editor-container">
             <h2>Edit Document</h2>
@@ -114,6 +130,7 @@ const DocumentEditor = () => {
                     </tbody>
                 </table>
                 <button type="button" className="save-button" onClick={saveDocument}>Save</button>
+                <button type="button" className="delete-button" onClick={handleDelete}>Delete</button>
             </form>
 
             <div className="comments-section">
