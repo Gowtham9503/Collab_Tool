@@ -56,27 +56,27 @@
 
   
 
-**Frontend**: React.js
+ - **Frontend**: React.js
 
   
 
-**Backend:** Node.js, Express.js
+ - **Backend:** Node.js, Express.js
 
   
 
-**Database:** MongoDB
+ - **Database:** MongoDB
 
   
 
-**Real-Time Communication**: Socket.IO
+ - **Real-Time Communication**: Socket.IO
 
   
 
-**HTTP Requests:** Axios
+ - **HTTP Requests:** Axios
 
   
 
-**Deployment:** Vercel
+ - **Deployment:** Vercel
 
   
 
@@ -112,7 +112,7 @@ Realtime-Collaboration-Tool/
 
   
 
-**Installation & Setup**
+## Installation & Setup
 
   
 
@@ -253,7 +253,7 @@ git clone  [https://github.com/Gowtham9503/Collab_Tool.git](https://github.com/G
 
   
 
-**License**
+## License
 
   
 
