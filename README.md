@@ -4,7 +4,7 @@
 
  - A Full Stack Real-Time Collaboration Platform built with MERN Stack, Socket.IO, and Axios.
 
- - t enables multiple users to edit, share documents, track version history, and comment in real-time, all in a smooth and synchronized environment.
+ - it enables multiple users to edit, share documents, track version history, and comment in real-time, all in a smooth and synchronized environment.
 
  - This project is deployed on Vercel for easy access and collaboration.
 
